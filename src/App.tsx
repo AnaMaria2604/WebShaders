@@ -26,6 +26,7 @@ import {
   FlowingGradient,
 } from "shaders/react";
 import { slides } from "./slides";
+import ShaderEffect from "./ShaderEffect";
 
 const shaderShowcases = [
   { title: "Molten petals", family: "ORGANIC / LIGHT", components: ["Blob", "Glow", "FloatingParticles", "DotGrid", "LensFlare"] },
@@ -308,10 +309,14 @@ function App() {
         ref={presentationRef}
         aria-label="Web Shaders presentation"
       >
-        <div className="slide-art" data-effect={shaderIndex} aria-hidden="true">
-          <Shader className="ambient-shader">
-            <ShaderScene index={shaderIndex} />
-          </Shader>
+        <div className={`slide-art${activeIndex === 26 ? " demo-slide" : ""}`} data-effect={shaderIndex} aria-hidden="true">
+          {activeIndex === 26 ? (
+            <ShaderEffect />
+          ) : (
+            <Shader className="ambient-shader">
+              <ShaderScene index={shaderIndex} />
+            </Shader>
+          )}
         </div>
         <header className="topbar">
           <button
@@ -324,7 +329,7 @@ function App() {
             <ArrowIcon direction="left" />
             <span>Home</span>
           </button>
-          <p className="deck-label">{showcase.family}</p>
+          <p className="deck-label">{activeIndex === 26 ? "LIVE DEMO" : showcase.family}</p>
           <button
             className="icon-button fullscreen-button"
             type="button"
@@ -337,13 +342,14 @@ function App() {
         </header>
 
         <div className="slide-area" aria-live="polite" aria-atomic="true">
-          {hasFloatingLayers && (
+          {hasFloatingLayers && activeIndex !== 26 && (
             <div className="art-flow" data-effect={shaderIndex} aria-hidden="true">
               <span className="flow-orb flow-orb-one" />
               <span className="flow-orb flow-orb-two" />
               <span className="flow-prism" />
             </div>
           )}
+          {activeIndex !== 26 && (
           <article
             className={`slide slide-${activeSlide.layout}${activeSlide.layout === "full" && activeSlide.cover ? " slide-cover" : ""}${activeSlide.layout === "full" && activeSlide.centered ? " slide-centered" : ""}`}
             key={activeIndex}
@@ -408,6 +414,7 @@ function App() {
             </div>
 
           </article>
+          )}
         </div>
 
         <footer className="controls">
