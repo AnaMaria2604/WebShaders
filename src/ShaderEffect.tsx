@@ -4,15 +4,16 @@ export default function ShaderEffect() {
   return (
     <Shader>
       <Blob
-        center={{
-          x: 0.5,
-          y: 0.5
-        }}
-        deformation={0.7}
-        seed={0.3}
-        size={0.65}
-        speed={0.3}
-        stops={[{ color: "#ff4500", position: 0 }, { color: "#ffd700", position: 1 }]} />
+        deformation={1.5}
+        seed={52}
+        size={0.8}
+        speed={1.0}
+        stops={[
+          { color: "#00e5ff", position: 0 },
+          { color: "#ff00aa", position: 0.5 },
+          { color: "#8b00ff", position: 1 },
+        ]}
+      />
     </Shader>
   )
 }
