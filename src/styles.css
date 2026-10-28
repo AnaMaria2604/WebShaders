@@ -2212,7 +2212,7 @@ kbd {
   }
 }
 
-/* Only slide 27: blank canvas */
+/* Only demo slide: blank canvas */
 .slide-art.demo-slide {
   background: #fff;
   background-image: none;
