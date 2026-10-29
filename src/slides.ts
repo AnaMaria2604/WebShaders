@@ -70,7 +70,7 @@ export const slides: Slide[] = [
       },
       {
         title: "04 · Integrations & Framework Support",
-        body: "Frontend frameworks, AI-assisted development, CLI/MCP and integration.",
+        body: "Frontend frameworks, AI-assisted development and integration.",
       },
       {
         title: "05 · Shaders.com & Practical Workflows",
