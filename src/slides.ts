@@ -5,7 +5,15 @@ export type TechnologyLogo = {
 
 export type SlidePoint = {
   title: string;
-  body: string;
+  body?: string;
+  subpoints?: {
+    title: string;
+    body: string;
+  }[];
+  links?: {
+    label: string;
+    href: string;
+  }[];
 };
 
 export type FullSlide = {
@@ -13,6 +21,7 @@ export type FullSlide = {
   section: string;
   title: string;
   description?: string;
+  descriptionEmphasis?: string;
   points?: SlidePoint[];
   technologies?: TechnologyLogo[];
   code?: string;
@@ -28,6 +37,8 @@ export type ColumnsSlide = {
   layout: "columns";
   section: string;
   title: string;
+  description?: string;
+  descriptionEmphasis?: string;
   columns: {
     title: string;
     description?: string;
@@ -40,44 +51,106 @@ export type Slide = FullSlide | ColumnsSlide;
 export const slides: Slide[] = [
   {
     layout: "full",
-    section: "A visual introduction",
-    title: "Introduction to\nWeb Shaders",
+    section: "Presentation roadmap",
+    title: "Chapters & topics",
     description:
-      "A guided tour of GPU-powered graphics: how shaders work, where they fit, and what they make possible on the web.",
-    cover: true,
+      "From shader fundamentals to Shaders.com workflows, here is the path through the presentation.",
     points: [
       {
-        title: "Understand",
-        body: "Learn the graphics pipeline and the role of shader programs.",
+        title: "01 · Introduction to Web Shaders and to 'Shaders' as a tool",
+        body: "Foundations, purpose, evolution and how shaders compare with CSS animation.",
       },
       {
-        title: "Create",
-        body: "Explore effects, interaction, and frontend integrations.",
+        title: "02 · Architecture & Technologies",
+        body: "CPU and GPU roles, the rendering pipeline, WebGL and WebGPU.",
       },
       {
-        title: "Compose",
-        body: "See how layers of light, color, and texture become design.",
+        title: "03 · Shader Programming",
+        body: "How shaders receive data, use coordinates, colors and time, calculate visual effects and respond to animation or pointer input.",
+      },
+      {
+        title: "04 · Integrations & Framework Support",
+        body: "Frontend frameworks, AI-assisted development, CLI/MCP and integration.",
+      },
+      {
+        title: "05 · Shaders.com & Practical Workflows",
+        body: "Platform features, effects, customization, composition and a live-demo guide.",
+      },
+      {
+        title: "06 · Challenges, Future & Conclusions",
+        body: "Performance, compatibility, accessibility, limitations, future and takeaways.",
+      },
+    ],
+  },
+  {
+    layout: "columns",
+    section: "01 / Introduction to Web Shaders",
+    title: "What are Web Shaders?",
+    description:
+      "Small, high-performance computer programs that run directly on your computer's graphics card (GPU) to render 2D and 3D graphics, animations and visual effects in a web browser.",
+    columns: [
+      {
+        title: "Purpose & output",
+        points: [
+          {
+            title: "Purpose",
+            body: "Describe how graphics are drawn or transformed, often one vertex or pixel at a time.",
+          },
+          {
+            title: "What they produce",
+            body: "Images, lighting, distortion, gradients, particles and other real-time effects.",
+          },
+        ],
+      },
+      {
+        title: "Where they're used",
+        points: [
+          {
+            title: "UI design",
+            body: "Interactive gradients, glass effects, textures and liquid motion.",
+          },
+          {
+            title: "Gaming & 3D scenes",
+            body: "Materials, lighting, environmental effects and post-processing.",
+          },
+          {
+            title: "Data & math visualization",
+            body: "Procedural patterns, wave simulations and ray-marched shapes.",
+          },
+        ],
       },
     ],
   },
   {
     layout: "full",
     section: "01 / Introduction to Web Shaders",
-    title: "What are Web Shaders?",
+    title: "What is 'Shaders' as a tool?",
     description:
-      "Small programs that run on the graphics processor to calculate positions, colors, and visual effects.",
+      "Build effects visually, in code or with tools. Every route ends with the same GPU-effect components in your codebase.",
     points: [
       {
-        title: "Purpose",
-        body: "Describe how graphics are drawn or transformed, often one vertex or pixel at a time.",
+        title: "Write code or ask an agent",
+        body: "Install the shaders package and build components directly with the quickstart that is provided or connect Claude Code, Cursor or another agent to install and edit effects.",
       },
       {
-        title: "Where they run",
-        body: "Usually execute in parallel on a GPU through a browser graphics API.",
+        title: "No learning curve for graphics programming",
+        body: "You don't need pre-existing graphics-programming experience. CSS layout or arranging layers in Figma is a useful starting model.",
       },
       {
-        title: "What they produce",
-        body: "Images, lighting, distortion, gradients, particles, and other real-time effects.",
+        title: "Design visually",
+        body: "Use sliders, color pickers and live preview, then export code for your framework.",
+      },
+      {
+        title: "Components that render live",
+        body: "Use GPU effect components with React, Vue, Svelte, Solid, JavaScript or Framer. They render in the browser with WebGPU.",
+      },
+      {
+        title: "CLI or Framer",
+        body: "The CLI installs components in your project and keeps them in sync with the editor. In Framer, use the Shaders plugin to place effects directly on the design canvas without setting up an npm project or writing integration code.",
+      },
+      {
+        title: "Open source vs. free to use",
+        body: "The engine and components are MIT-licensed. The design editor is free to use, including projects and code export, but is not open source.",
       },
     ],
   },
@@ -91,32 +164,32 @@ export const slides: Slide[] = [
         points: [
           {
             title: "Real-time visuals",
-            body: "Generate effects in response to time, data, and user input.",
+            body: "Generate effects in response to time, data and user input.",
           },
           {
             title: "Flexible design",
-            body: "Tune color, motion, and texture without exporting a video for every variation.",
+            body: "Tune color, motion and texture without exporting a video for every variation.",
           },
           {
             title: "New interactions",
-            body: "Make visual surfaces react to a pointer, touch, scroll, or application state.",
+            body: "Make visual surfaces react to a pointer, touch, scroll or application state.",
           },
         ],
       },
       {
-        title: "A practical design tool",
+        title: "Performance & visual reach",
         points: [
           {
-            title: "Brand moments",
-            body: "Add distinctive motion to a hero, product page, or campaign.",
+            title: "Parallel processing",
+            body: "The GPU handles many graphics calculations in parallel, leaving the CPU more room for application logic.",
           },
           {
-            title: "Data display",
-            body: "Use GPU calculations for visualizations and large sets of graphic elements.",
+            title: "Cinema-like visual effects",
+            body: "Create dynamic lighting, realistic shadows, motion blur, water refractions and custom particles such as smoke, fire or dust.",
           },
           {
-            title: "Use with care",
-            body: "Effects should support the message, remain performant, and never replace essential content.",
+            title: "Instant accessibility",
+            body: "Share rich, game-like visuals through a webpage, without asking visitors to install a separate app or browser plugin.",
           },
         ],
       },
@@ -125,45 +198,47 @@ export const slides: Slide[] = [
   {
     layout: "full",
     section: "01 / Introduction to Web Shaders",
-    title: "From plugin graphics\nto the open web",
+    title: "How web graphics evolved",
+    description:
+      "The web moved from graphics that needed extra software to tools built into the browser.",
     points: [
       {
-        title: "Early web",
-        body: "Rich interactive graphics often depended on plugins or platform-specific software.",
+        title: "Before browser graphics",
+        body: "Websites relied on add-ons or separate software for advanced visuals. Visitors had to install them and they did not work everywhere.",
       },
       {
-        title: "WebGL arrives",
-        body: "WebGL brought OpenGL ES-style GPU graphics to browser canvases and enabled wider experimentation.",
+        title: "WebGL brings the GPU to the browser",
+        body: "WebGL let a webpage draw GPU-powered graphics inside a canvas, without a separate plugin. Developers could create 3D scenes and visual effects, but had to work with low-level graphics code.",
       },
       {
-        title: "A richer ecosystem",
-        body: "Libraries, game engines, and creative-coding tools made browser graphics easier to build.",
+        title: "Libraries make graphics easier to use",
+        body: "Tools built on top of WebGL handle some of the complex setup. This made it easier to create and reuse effects in websites and apps.",
       },
       {
-        title: "WebGPU era",
-        body: "WebGPU introduces a modern API for graphics and general-purpose GPU computation.",
+        title: "WebGPU is the newer option",
+        body: "WebGPU is a newer browser API for graphics and other GPU calculations. It gives developers more modern tools, though support still depends on the browser and device.",
       },
     ],
   },
   {
     layout: "columns",
     section: "01 / Introduction to Web Shaders",
-    title: "Shaders and CSS: different tools",
+    title: "CSS and shaders: different tools",
     columns: [
       {
         title: "CSS animation",
         points: [
           {
-            title: "Best for",
-            body: "Interface states, layout transitions, transforms, and familiar UI motion.",
+            title: "Best for interface states, layout transitions, transforms and familiar UI motion.",
+            // body: "Interface states, layout transitions, transforms and familiar UI motion.",
           },
           {
             title: "How it works",
-            body: "Animates browser properties such as opacity, position, and transform.",
+            body: "Animates browser properties such as opacity, position and transform.",
           },
           {
             title: "Easy to maintain",
-            body: "Declarative, readable, and usually the right choice for ordinary interface animation.",
+            body: "Declarative, readable and usually the right choice for ordinary interface animation.",
           },
         ],
       },
@@ -171,8 +246,7 @@ export const slides: Slide[] = [
         title: "Shader effects",
         points: [
           {
-            title: "Best for",
-            body: "Pixel-level color, procedural textures, distortion, and complex visual fields.",
+            title: "Best for pixel-level color, procedural textures, distortion and complex visual fields.",
           },
           {
             title: "How it works",
@@ -180,7 +254,7 @@ export const slides: Slide[] = [
           },
           {
             title: "Choose deliberately",
-            body: "Shaders add power but also require GPU support, testing, and fallback planning.",
+            body: "Shaders add power but also require GPU support, testing and fallback planning.",
           },
         ],
       },
@@ -197,16 +271,13 @@ export const slides: Slide[] = [
           "Runs the application and prepares work for the graphics card.",
         points: [
           {
-            title: "Manages",
-            body: "Events, layout, application logic, and draw instructions.",
+            title: "Managests events, layout, application logic and draw instructions.",
           },
           {
-            title: "Prepares",
-            body: "Geometry, resources, and parameters for graphics work.",
+            title: "Prepares geometry, resources and parameters for graphics work.",
           },
           {
-            title: "Excels at",
-            body: "Flexible, sequential tasks and decision-making.",
+            title: "Excels at flexible, sequential tasks and decision-making.",
           },
         ],
       },
@@ -215,16 +286,13 @@ export const slides: Slide[] = [
         description: "Processes many similar graphics calculations at once.",
         points: [
           {
-            title: "Transforms",
-            body: "Many vertices into positions on screen.",
+            title: "Transforms many vertices into positions on screen.",
           },
           {
-            title: "Colors",
-            body: "Calculates fragment colors for the rendered image.",
+            title: "Colors calculates fragment colors for the rendered image.",
           },
           {
-            title: "Excels at",
-            body: "Large batches of parallel operations, not every application task.",
+            title: "Excels at large batches of parallel operations, not every application task.",
           },
         ],
       },
@@ -240,11 +308,12 @@ export const slides: Slide[] = [
         points: [
           {
             title: "1 · Input",
-            body: "The CPU submits vertices, resources, and render commands.",
+            body: "The CPU submits vertices, resources and render commands.",
           },
           {
             title: "2 · Vertex stage",
-            body: "A vertex shader transforms geometry into clip-space positions.",
+            body: "The vertex shader uses the camera view to work out where each point should appear(clip-space points). " +
+              "Then the GPU clips points outside the view before mapping the rest onto the screen.",
           },
           {
             title: "3 · Rasterization",
@@ -257,40 +326,17 @@ export const slides: Slide[] = [
         points: [
           {
             title: "4 · Fragment stage",
-            body: "A fragment shader calculates color and other per-pixel values.",
+            body: "For each fragment (a candidate pixel), the fragment shader calculates its color and may also set depth or transparency.",
           },
           {
             title: "5 · Output",
-            body: "Depth tests and blending combine results into a render target.",
+            body: "Depth testing decides which surfaces are in front; blending mixes colors, such as a transparent layer over a background. The results are drawn into an image called a render target.",
           },
           {
             title: "6 · Display",
-            body: "The finished frame is presented through the browser canvas.",
+            body: "The browser displays the finished render target in the canvas. For animation, this process repeats to produce each new frame.",
           },
         ],
-      },
-    ],
-  },
-  {
-    layout: "full",
-    section: "02 / Architecture & technologies",
-    title: "Three shader stages to know",
-    points: [
-      {
-        title: "Vertex shader",
-        body: "Processes vertex inputs and determines where geometry appears.",
-      },
-      {
-        title: "Fragment shader",
-        body: "Calculates the color and other outputs for each rasterized fragment.",
-      },
-      {
-        title: "Compute shader",
-        body: "Runs general-purpose parallel calculations, independent of the draw pipeline.",
-      },
-      {
-        title: "Different jobs",
-        body: "A project may use one or several stages, depending on its visual and computational needs.",
       },
     ],
   },
@@ -303,8 +349,9 @@ export const slides: Slide[] = [
         title: "WebGL",
         points: [
           {
-            title: "Mature",
-            body: "The established browser API based on OpenGL ES.",
+            title: "What it is?",
+            body: "WebGL (Web Graphics Library) is a JavaScript API that lets you render high-performance," +
+              " interactive 2D and 3D graphics directly inside a web browser using the HTML5 <canvas> element.",
           },
           {
             title: "Broad reach",
@@ -320,8 +367,9 @@ export const slides: Slide[] = [
         title: "WebGPU",
         points: [
           {
-            title: "Modern API",
-            body: "Designed around current GPU architectures and explicit resource management.",
+            title: "What it is?",
+            body: "WebGPU is a modern, low-level browser and cross-platform graphics API designed to replace WebGL. " +
+              "It gives developers direct access to a device's GPU for 3D rendering and parallel computations.",
           },
           {
             title: "Graphics & compute",
@@ -336,118 +384,9 @@ export const slides: Slide[] = [
     ],
   },
   {
-    layout: "columns",
-    section: "02 / Architecture & technologies",
-    title: "GLSL and WGSL",
-    columns: [
-      {
-        title: "GLSL",
-        points: [
-          {
-            title: "Common pairing",
-            body: "Widely used with WebGL and OpenGL-style graphics pipelines.",
-          },
-          {
-            title: "Typed language",
-            body: "Expresses shader stages using graphics-oriented types and functions.",
-          },
-          {
-            title: "In practice",
-            body: "Many existing examples, engines, and tools build on GLSL.",
-          },
-        ],
-      },
-      {
-        title: "WGSL",
-        points: [
-          {
-            title: "WebGPU language",
-            body: "Designed to provide a secure, portable shader language for the web.",
-          },
-          {
-            title: "Explicit structure",
-            body: "Declares resource bindings, entry points, and stage interfaces.",
-          },
-          {
-            title: "In practice",
-            body: "Used when authoring WebGPU shaders, including vertex, fragment, and compute stages.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    layout: "full",
-    section: "02 / Architecture & technologies",
-    title: "How WebGPU draws in a browser",
-    points: [
-      {
-        title: "Request access",
-        body: "JavaScript asks the browser for a GPU adapter and then a logical device.",
-      },
-      {
-        title: "Prepare resources",
-        body: "Create buffers, textures, bind groups, shader modules, and a render pipeline.",
-      },
-      {
-        title: "Record commands",
-        body: "Encode render or compute work in a command encoder and finish a command buffer.",
-      },
-      {
-        title: "Submit a frame",
-        body: "Submit commands to the GPU queue and present the rendered canvas output.",
-      },
-      {
-        title: "Handle absence",
-        body: "GPU access can be unavailable or lost, so provide graceful fallbacks and cleanup.",
-      },
-    ],
-  },
-  {
-    layout: "columns",
-    section: "03 / Shader programming",
-    title: "Anatomy of a shader program",
-    columns: [
-      {
-        title: "Inputs & interface",
-        points: [
-          {
-            title: "Entry point",
-            body: "A stage-specific function marked for vertex, fragment, or compute work.",
-          },
-          {
-            title: "Attributes",
-            body: "Per-vertex input such as positions, normals, or texture coordinates.",
-          },
-          {
-            title: "Resources",
-            body: "Uniforms, buffers, and textures connect application data to shader code.",
-          },
-        ],
-      },
-      {
-        title: "Calculation & output",
-        points: [
-          {
-            title: "Transform",
-            body: "Apply coordinate and geometry operations to the inputs.",
-          },
-          {
-            title: "Evaluate",
-            body: "Run math, sampling, and color operations for the current stage.",
-          },
-          {
-            title: "Return",
-            body: "Write positions, colors, or computed data to the next stage or target.",
-          },
-        ],
-      },
-    ],
-  },
-  {
     layout: "full",
     section: "03 / Shader programming",
-    title: "Coordinates, uniforms,\ncolors, and time",
+    title: "Important shader concepts",
     points: [
       {
         title: "Coordinates",
@@ -455,7 +394,7 @@ export const slides: Slide[] = [
       },
       {
         title: "Uniforms",
-        body: "Shared parameters pass values such as resolution, elapsed time, and pointer position.",
+        body: "Shared parameters pass values such as resolution, elapsed time and pointer position.",
       },
       {
         title: "Colors",
@@ -463,7 +402,7 @@ export const slides: Slide[] = [
       },
       {
         title: "Time",
-        body: "A changing time value lets the shader animate a shape, wave, or gradient.",
+        body: "A changing time value lets the shader animate a shape, wave or gradient.",
       },
     ],
   },
@@ -477,15 +416,15 @@ export const slides: Slide[] = [
         points: [
           {
             title: "Start with a position",
-            body: "Use coordinates to locate the current vertex or fragment.",
+            body: "For each vertex or fragment, the shader receives coordinates that identify its place on the shape or screen. Those coordinates can also act like a grid for patterns.",
           },
           {
             title: "Apply a function",
-            body: "Use math, noise, or a texture sample to derive a value.",
+            body: "The shader applies calculations to the coordinates-for example, distance from a point can make a circular ripple, while noise can create irregular clouds or stone-like texture.",
           },
           {
             title: "Map to color",
-            body: "Turn that value into color, opacity, or displacement.",
+            body: "The calculated value is mapped to a color or transparency.",
           },
         ],
       },
@@ -494,15 +433,15 @@ export const slides: Slide[] = [
         points: [
           {
             title: "Shape the response",
-            body: "Thresholds, gradients, and easing alter how values transition.",
+            body: "Use thresholds to create a sharp edge or a gradient to make a soft transition-for example, fading a glow smoothly into the background.",
           },
           {
             title: "Layer effects",
-            body: "Combine generated output with blur, glass, grain, or blending.",
+            body: "Combine the result with other visual treatments, such as blur, glass distortion or grain, to build a more complex look.",
           },
           {
             title: "Tune the cost",
-            body: "Reduce samples and complexity when performance is more important than detail.",
+            body: "Every extra calculation or texture lookup adds GPU work. Reduce repeated samples or simplify the math if the effect runs slowly on target devices.",
           },
         ],
       },
@@ -522,11 +461,11 @@ export const slides: Slide[] = [
           },
           {
             title: "Choose a rhythm",
-            body: "Use a slow pulse or drift when motion should remain atmospheric.",
+            body: "For gentle background motion, slowly brighten and dim a glow or move a gradient across the screen.",
           },
           {
             title: "Control updates",
-            body: "Avoid unnecessary work and respect reduced-motion preferences.",
+            body: "Redraw only when the image needs to change. If a visitor has Reduce Motion enabled in their device settings, keep animations still or make them gentler.",
           },
         ],
       },
@@ -539,7 +478,7 @@ export const slides: Slide[] = [
           },
           {
             title: "Distance fields",
-            body: "Use distance from the pointer to create a ripple, spotlight, or distortion.",
+            body: "Use distance from the pointer to create a ripple, spotlight or distortion.",
           },
           {
             title: "Connect UI state",
@@ -549,33 +488,7 @@ export const slides: Slide[] = [
       },
     ],
   },
-  {
-    layout: "full",
-    section: "03 / Shader programming",
-    title: "A tiny WGSL fragment shader",
-    description:
-      "This fragment stage returns one solid warm color for each fragment it shades.",
-    code: `@fragment
-fn fs() -> @location(0) vec4f {
-  let warmOrange = vec3f(1.0, 0.38, 0.08);
-  return vec4f(warmOrange, 1.0);
-}`,
-    points: [
-      {
-        title: "@fragment",
-        body: "Marks this function as an entry point for the fragment stage.",
-      },
-      {
-        title: "vec3f",
-        body: "Stores three floating-point color channels: red, green, and blue.",
-      },
-      {
-        title: "vec4f",
-        body: "Adds alpha as the fourth channel; 1.0 means fully opaque.",
-      },
-    ],
-  },
-
+  ///////////////
   {
     layout: "full",
     section: "04 / Integrations & framework support",
@@ -611,7 +524,7 @@ fn fs() -> @location(0) vec4f {
       },
       {
         title: "Dynamic customization",
-        body: "Control colors, size, and animation through code.",
+        body: "Control colors, size and animation through code.",
       },
     ],
   },
@@ -631,7 +544,7 @@ fn fs() -> @location(0) vec4f {
       },
       {
         title: "Customization",
-        body: "Developers can ask AI to change colors, movement, or shader parameters.",
+        body: "Developers can ask AI to change colors, movement or shader parameters.",
       },
       {
         title: "Testing",
@@ -654,7 +567,7 @@ fn fs() -> @location(0) vec4f {
       },
       {
         title: "3 · Customize",
-        body: "Change properties like color, size, speed, and animation.",
+        body: "Change properties like color, size, speed and animation.",
       },
       {
         title: "4 · Test",
@@ -676,7 +589,7 @@ fn fs() -> @location(0) vec4f {
           },
           {
             title: "Interactive elements",
-            body: "Make visual effects respond to mouse movement, scrolling, or user actions.",
+            body: "Make visual effects respond to mouse movement, scrolling or user actions.",
           },
           {
             title: "Product presentation",
@@ -689,15 +602,15 @@ fn fs() -> @location(0) vec4f {
         points: [
           {
             title: "3D experiences",
-            body: "Create realistic materials, lighting, and visual effects for 3D scenes.",
+            body: "Create realistic materials, lighting and visual effects for 3D scenes.",
           },
           {
             title: "Games",
-            body: "Generate effects such as water, fire, particles, and environmental lighting.",
+            body: "Generate effects such as water, fire, particles and environmental lighting.",
           },
           {
             title: "Digital art & installations",
-            body: "Create interactive visual artworks that respond to sound, movement, or user input.",
+            body: "Create interactive visual artworks that respond to sound, movement or user input.",
           },
         ],
       },
@@ -727,7 +640,7 @@ fn fs() -> @location(0) vec4f {
       },
     ],
     action: {
-      label: "Official website — shaders.com",
+      label: "Official website - shaders.com",
       href: "https://shaders.com",
     },
   },
@@ -751,7 +664,7 @@ fn fs() -> @location(0) vec4f {
       },
       {
         title: "Experiment & Explore",
-        body: "Try different effects, combine ideas, and create something unique.",
+        body: "Try different effects, combine ideas and create something unique.",
       },
     ],
   },
@@ -761,7 +674,7 @@ fn fs() -> @location(0) vec4f {
     section: "05 / Shaders.com Platform",
     title: "Live Demonstration",
     description:
-      "Creating a shader in the visual editor, exporting it, and modifying the code in VS Code.",
+      "Creating a shader in the visual editor, exporting it and modifying the code in VS Code.",
     action: {
       label: "Watch on YouTube",
       href: "https://youtu.be/5jOBhrfeboQ",
@@ -777,11 +690,11 @@ fn fs() -> @location(0) vec4f {
     points: [
       {
         title: "Browse",
-        body: "Open the shader library and choose an effect such as Blob, Glass, or MeshGradient.",
+        body: "Open the shader library and choose an effect such as Blob, Glass or MeshGradient.",
       },
       {
         title: "Explore controls",
-        body: "Change colors, size, movement, and intensity to understand each parameter.",
+        body: "Change colors, size, movement and intensity to understand each parameter.",
       },
       {
         title: "Compose",
@@ -884,7 +797,7 @@ fn fs() -> @location(0) vec4f {
         points: [
           {
             title: "WebGPU support",
-            body: "WebGPU needs a compatible browser, graphics card, and driver.",
+            body: "WebGPU needs a compatible browser, graphics card and driver.",
           },
           {
             title: "Shaders.com",
@@ -913,11 +826,11 @@ fn fs() -> @location(0) vec4f {
       },
       {
         title: "AI tools",
-        body: "AI can help developers write, edit, and improve shader code more quickly.",
+        body: "AI can help developers write, edit and improve shader code more quickly.",
       },
       {
         title: "Beyond graphics",
-        body: "WebGPU can also speed up simulations, data processing, and some AI tasks.",
+        body: "WebGPU can also speed up simulations, data processing and some AI tasks.",
       },
     ],
   },
@@ -926,11 +839,11 @@ fn fs() -> @location(0) vec4f {
     section: "06 / Conclusions",
     title: "Key takeaways & conclusions",
     description:
-      "Web shaders make websites more interactive, and tools like Shaders.com make visual effects easier to create.",
+      "Web shaders make websites more interactive and tools like Shaders.com make visual effects easier to create.",
     points: [
       {
         title: "Web shaders",
-        body: "Use the GPU to create animated colors, shapes, and interactive visual effects.",
+        body: "Use the GPU to create animated colors, shapes and interactive visual effects.",
       },
       {
         title: "WebGL & WebGPU",
@@ -942,7 +855,7 @@ fn fs() -> @location(0) vec4f {
       },
       {
         title: "Good design",
-        body: "Shaders should look good, run smoothly, and remain accessible to users.",
+        body: "Shaders should look good, run smoothly and remain accessible to users.",
       },
     ],
   },

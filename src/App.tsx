@@ -25,7 +25,7 @@ import {
   Watercolor,
   FlowingGradient,
 } from "shaders/react";
-import { slides } from "./slides";
+import { slides, type SlidePoint } from "./slides";
 import ShaderEffect from "./ShaderEffect";
 
 const shaderShowcases = [
@@ -717,7 +717,7 @@ function FullscreenIcon({ active }: { active: boolean }) {
 function SlidePoints({
   points,
 }: {
-  points: { title: string; body: string }[];
+  points: SlidePoint[];
 }) {
   return (
     <ul className="point-list">
@@ -726,7 +726,27 @@ function SlidePoints({
           <span className="point-mark" aria-hidden="true" />
           <div>
             <h3>{point.title}</h3>
-            <p>{point.body}</p>
+            {point.body && <p>{point.body}</p>}
+            {point.subpoints && (
+              <ul className="point-subpoints">
+                {point.subpoints.map((subpoint) => (
+                  <li key={subpoint.title}>
+                    <span>
+                      <strong>{subpoint.title}:</strong> {subpoint.body}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {point.links && (
+              <div className="point-links">
+                {point.links.map((link) => (
+                  <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </li>
       ))}
@@ -734,8 +754,24 @@ function SlidePoints({
   );
 }
 
+function renderEmphasis(text: string, emphasizedText: string) {
+  const index = text.indexOf(emphasizedText);
+  if (index === -1) {
+    return text;
+  }
+
+  return (
+    <>
+      {text.slice(0, index)}
+      <strong>{emphasizedText}</strong>
+      {text.slice(index + emphasizedText.length)}
+    </>
+  );
+}
+
 function App() {
   const [isPresentation, setIsPresentation] = useState(false);
+  const [isDetails, setIsDetails] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const presentationRef = useRef<HTMLElement>(null);
@@ -760,6 +796,8 @@ function App() {
     setActiveIndex(0);
     setIsPresentation(true);
   }, []);
+  const openDetails = useCallback(() => setIsDetails(true), []);
+  const returnToHome = useCallback(() => setIsDetails(false), []);
 
   const goToHome = useCallback(async () => {
     if (document.fullscreenElement) {
@@ -897,9 +935,14 @@ function App() {
                       </span>
                     ))}
                   </h1>
-                  {activeSlide.layout === "full" && activeSlide.description && (
+                  {activeSlide.description && (
                     <p className="slide-description">
-                      {activeSlide.description}
+                      {activeSlide.descriptionEmphasis
+                        ? renderEmphasis(
+                          activeSlide.description,
+                          activeSlide.descriptionEmphasis,
+                        )
+                        : activeSlide.description}
                     </p>
                   )}
                   <p className="shader-credit">
@@ -1065,6 +1108,41 @@ function App() {
         <kbd>→</kbd> to navigate <span>·</span> <kbd>F</kbd> fullscreen
       </p>
     </main>
+  ) : isDetails ? (
+    <main className="stage details-stage">
+      <section className="presentation details-presentation" aria-label="Presentation details">
+        <header className="topbar">
+          <button
+            className="home-button"
+            type="button"
+            onClick={returnToHome}
+            aria-label="Back to main page"
+          >
+            <ArrowIcon direction="left" />
+            <span>Home</span>
+          </button>
+          <p className="deck-label">PRESENTATION DETAILS</p>
+          <span aria-hidden="true" />
+        </header>
+        <div className="slide-area">
+          <article className="slide slide-full slide-centered">
+            <div className="slide-copy details-copy">
+              <div className="slide-heading">
+                <h1 id="details-title">Some details about the presentation and the demo</h1>
+                <h3 className="slide-description">
+                  The demo starts with this presentation.
+                </h3>
+              </div>
+            </div>
+          </article>
+        </div>
+        <footer className="controls details-controls" aria-hidden="true">
+          <div className="progress-track">
+            <div className="progress-fill" style={{ width: "100%" }} />
+          </div>
+        </footer>
+      </section>
+    </main>
   ) : (
     <main className="landing-page">
       <div className="landing-art" aria-hidden="true">
@@ -1085,7 +1163,7 @@ function App() {
             Web<span>Shaders</span>
           </h1>
           <p className="landing-description">
-            Explore the ideas, tools, and visual possibilities behind real-time
+            Explore the ideas, tools and visual possibilities behind real-time
             shader art on the web.
           </p>
           <div className="landing-team">
@@ -1095,6 +1173,14 @@ function App() {
             </p>
           </div>
           <div className="landing-actions">
+            <button
+              className="landing-button landing-button-secondary"
+              type="button"
+              onClick={openDetails}
+            >
+              <span>Before we begin</span>
+              <ArrowIcon direction="right" />
+            </button>
             <button
               className="landing-button landing-button-primary"
               type="button"

@@ -645,6 +645,11 @@ h1 {
   line-height: 1.75;
 }
 
+.slide-description strong {
+  color: #46362b;
+  font-weight: 700;
+}
+
 .point-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -688,6 +693,43 @@ h1 {
   color: #75675c;
   font-size: 12px;
   line-height: 1.65;
+}
+
+.point-subpoints {
+  display: grid;
+  gap: 5px;
+  margin: 7px 0 0;
+  padding-left: 17px;
+  color: #75675c;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.point-subpoints li::marker {
+  color: #df743d;
+}
+
+.point-subpoints strong {
+  color: #46362b;
+  font-weight: 600;
+}
+
+.point-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.point-links a {
+  color: #9c4a22;
+  font-size: 11px;
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.point-links a:hover {
+  color: #d5682e;
 }
 
 .cover-link {
@@ -1924,6 +1966,41 @@ kbd {
     radial-gradient(ellipse at 16% 16%, rgb(255 218 151 / 64%), transparent 42%),
     radial-gradient(ellipse at 88% 78%, rgb(255 183 133 / 44%), transparent 43%),
     #f7f2e8;
+}
+
+.details-presentation {
+  min-height: min(700px, calc(100svh - 112px));
+}
+
+.details-copy {
+  width: min(100%, 960px);
+}
+
+.details-copy .slide-heading {
+  margin-bottom: 0;
+}
+
+.details-copy h1 {
+  max-width: 100%;
+  font-size: clamp(36px, 6vw, 64px);
+  letter-spacing: -0.06em;
+}
+
+.details-copy .slide-description {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.details-controls {
+  min-height: 46px;
+  grid-template-columns: 1fr;
+  padding: 0 42px;
+}
+
+@media (max-width: 760px) {
+  .details-controls {
+    padding: 0 20px;
+  }
 }
 
 .landing-art {
