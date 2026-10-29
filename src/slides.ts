@@ -229,7 +229,8 @@ export const slides: Slide[] = [
         title: "CSS animation",
         points: [
           {
-            title: "Best for interface states, layout transitions, transforms and familiar UI motion.",
+            title:
+              "Best for interface states, layout transitions, transforms and familiar UI motion.",
             // body: "Interface states, layout transitions, transforms and familiar UI motion.",
           },
           {
@@ -246,7 +247,8 @@ export const slides: Slide[] = [
         title: "Shader effects",
         points: [
           {
-            title: "Best for pixel-level color, procedural textures, distortion and complex visual fields.",
+            title:
+              "Best for pixel-level color, procedural textures, distortion and complex visual fields.",
           },
           {
             title: "How it works",
@@ -271,10 +273,12 @@ export const slides: Slide[] = [
           "Runs the application and prepares work for the graphics card.",
         points: [
           {
-            title: "Managests events, layout, application logic and draw instructions.",
+            title:
+              "Managests events, layout, application logic and draw instructions.",
           },
           {
-            title: "Prepares geometry, resources and parameters for graphics work.",
+            title:
+              "Prepares geometry, resources and parameters for graphics work.",
           },
           {
             title: "Excels at flexible, sequential tasks and decision-making.",
@@ -292,7 +296,8 @@ export const slides: Slide[] = [
             title: "Colors calculates fragment colors for the rendered image.",
           },
           {
-            title: "Excels at large batches of parallel operations, not every application task.",
+            title:
+              "Excels at large batches of parallel operations, not every application task.",
           },
         ],
       },
@@ -312,7 +317,8 @@ export const slides: Slide[] = [
           },
           {
             title: "2 · Vertex stage",
-            body: "The vertex shader uses the camera view to work out where each point should appear(clip-space points). " +
+            body:
+              "The vertex shader uses the camera view to work out where each point should appear(clip-space points). " +
               "Then the GPU clips points outside the view before mapping the rest onto the screen.",
           },
           {
@@ -350,7 +356,8 @@ export const slides: Slide[] = [
         points: [
           {
             title: "What it is?",
-            body: "WebGL (Web Graphics Library) is a JavaScript API that lets you render high-performance," +
+            body:
+              "WebGL (Web Graphics Library) is a JavaScript API that lets you render high-performance," +
               " interactive 2D and 3D graphics directly inside a web browser using the HTML5 <canvas> element.",
           },
           {
@@ -368,7 +375,8 @@ export const slides: Slide[] = [
         points: [
           {
             title: "What it is?",
-            body: "WebGPU is a modern, low-level browser and cross-platform graphics API designed to replace WebGL. " +
+            body:
+              "WebGPU is a modern, low-level browser and cross-platform graphics API designed to replace WebGL. " +
               "It gives developers direct access to a device's GPU for 3D rendering and parallel computations.",
           },
           {
@@ -575,42 +583,35 @@ export const slides: Slide[] = [
       },
     ],
   },
+
   {
     layout: "columns",
     section: "04 / Integrations & framework support",
-    title: "Real-World Use Cases",
+    title: "From Shader Code to Visual Tools",
     columns: [
       {
-        title: "Websites & User Interfaces",
+        title: "Code-based workflow",
         points: [
           {
-            title: "Animated backgrounds",
-            body: "Create moving gradients and visual effects for website backgrounds.",
+            title: "Manual coding",
+            body: "Write and modify shader code directly.",
           },
           {
-            title: "Interactive elements",
-            body: "Make visual effects respond to mouse movement, scrolling or user actions.",
-          },
-          {
-            title: "Product presentation",
-            body: "Use dynamic lighting and materials to make products more engaging.",
+            title: "Full control",
+            body: "Customize effects through code and parameters.",
           },
         ],
       },
       {
-        title: "Creative & Interactive Experiences",
+        title: "Visual workflow",
         points: [
           {
-            title: "3D experiences",
-            body: "Create realistic materials, lighting and visual effects for 3D scenes.",
+            title: "Visual editing",
+            body: "Adjust shader effects using an interactive editor.",
           },
           {
-            title: "Games",
-            body: "Generate effects such as water, fire, particles and environmental lighting.",
-          },
-          {
-            title: "Digital art & installations",
-            body: "Create interactive visual artworks that respond to sound, movement or user input.",
+            title: "Easy experimentation",
+            body: "Preview changes instantly without writing everything manually.",
           },
         ],
       },
