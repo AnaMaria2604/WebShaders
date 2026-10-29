@@ -587,7 +587,7 @@ export const slides: Slide[] = [
   {
     layout: "columns",
     section: "04 / Integrations & framework support",
-    title: "From Shader Code to Visual Tools",
+    title: "Shader Development Workflows",
     columns: [
       {
         title: "Code-based workflow",
